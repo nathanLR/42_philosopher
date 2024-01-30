@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   program_utilities.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nle-roux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 09:47:21 by nle-roux          #+#    #+#             */
-/*   Updated: 2024/01/30 10:48:12 by nle-roux         ###   ########.fr       */
+/*   Created: 2024/01/30 10:13:18 by nle-roux          #+#    #+#             */
+/*   Updated: 2024/01/30 10:42:09 by nle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-static t_data	*ft_init_data(int argc, char **argv)
+void	ft_manage_error(char *e_m, t_uint type, t_data *data)
+{
+	if (type == U_ERROR)
+		ft_putendl_fd(e_m, STDERR_FILENO);
+	else if (type == P_ERROR)
+		ft_putendl_fd("EXEC ERROR", STDERR_FILENO);
+	ft_destroy_data(data);
+}
+
+void	ft_destroy_data(t_data *data)
+{
+	if (data != NULL)
+		free(data);
+}
+
+void	ft_check_args(int argc, char **argv)
 {
 	(void)argc;
 	(void)argv;
-	t_data	*data;
-
-	data = (t_data *)malloc(sizeof(t_data) * 1);
-	if (data == NULL)
-		ft_manage_error(NULL, P_ERROR, NULL);
-	return (data);	
-}
-
-int	main(int argc, char **argv)
-{
-	t_data	*data;
-
-	argc--;
-	argv++;
-	ft_check_args(argc, argv);
-	data = ft_init_data(argc, argv);
-	ft_destroy_data(data);
-	return (0);
 }

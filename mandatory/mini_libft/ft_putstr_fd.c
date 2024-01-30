@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nle-roux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 09:47:21 by nle-roux          #+#    #+#             */
-/*   Updated: 2024/01/30 10:48:12 by nle-roux         ###   ########.fr       */
+/*   Created: 2024/01/30 10:32:27 by nle-roux          #+#    #+#             */
+/*   Updated: 2024/01/30 10:32:50 by nle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-static t_data	*ft_init_data(int argc, char **argv)
+size_t	ft_putstr_fd(char *s, int fd)
 {
-	(void)argc;
-	(void)argv;
-	t_data	*data;
+	int	len;
 
-	data = (t_data *)malloc(sizeof(t_data) * 1);
-	if (data == NULL)
-		ft_manage_error(NULL, P_ERROR, NULL);
-	return (data);	
+	if (fd < 0)
+		return (0);
+	len = 0;
+	if (!s)
+		return (ft_putstr_fd("(null)", fd));
+	while (*s)
+		len += ft_putchar_fd(*s++, fd);
+	return (len);
 }
 
-int	main(int argc, char **argv)
-{
-	t_data	*data;
-
-	argc--;
-	argv++;
-	ft_check_args(argc, argv);
-	data = ft_init_data(argc, argv);
-	ft_destroy_data(data);
-	return (0);
-}

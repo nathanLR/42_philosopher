@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nle-roux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 09:47:21 by nle-roux          #+#    #+#             */
-/*   Updated: 2024/01/30 10:48:12 by nle-roux         ###   ########.fr       */
+/*   Created: 2024/01/30 10:33:05 by nle-roux          #+#    #+#             */
+/*   Updated: 2024/01/30 10:33:19 by nle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-static t_data	*ft_init_data(int argc, char **argv)
+size_t	ft_putchar_fd(char c, int fd)
 {
-	(void)argc;
-	(void)argv;
-	t_data	*data;
-
-	data = (t_data *)malloc(sizeof(t_data) * 1);
-	if (data == NULL)
-		ft_manage_error(NULL, P_ERROR, NULL);
-	return (data);	
-}
-
-int	main(int argc, char **argv)
-{
-	t_data	*data;
-
-	argc--;
-	argv++;
-	ft_check_args(argc, argv);
-	data = ft_init_data(argc, argv);
-	ft_destroy_data(data);
+	if (fd >= 0)
+	{
+		write(fd, &c, 1);
+		return (1);
+	}
 	return (0);
 }

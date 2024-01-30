@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nle-roux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 09:47:21 by nle-roux          #+#    #+#             */
-/*   Updated: 2024/01/30 10:48:12 by nle-roux         ###   ########.fr       */
+/*   Created: 2024/01/30 10:31:06 by nle-roux          #+#    #+#             */
+/*   Updated: 2024/01/30 10:31:23 by nle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-static t_data	*ft_init_data(int argc, char **argv)
+int	ft_atoi(const char *nptr)
 {
-	(void)argc;
-	(void)argv;
-	t_data	*data;
+	int	signe;
+	int	result;
 
-	data = (t_data *)malloc(sizeof(t_data) * 1);
-	if (data == NULL)
-		ft_manage_error(NULL, P_ERROR, NULL);
-	return (data);	
-}
-
-int	main(int argc, char **argv)
-{
-	t_data	*data;
-
-	argc--;
-	argv++;
-	ft_check_args(argc, argv);
-	data = ft_init_data(argc, argv);
-	ft_destroy_data(data);
-	return (0);
+	result = 0;
+	signe = 1;
+	while (ft_isspace(*nptr))
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
+	{
+		if (*nptr == '-')
+			signe *= -1;
+		nptr++;
+	}
+	while (ft_isdigit(*nptr) && *nptr)
+	{
+		result = result * 10 + (*nptr - 48);
+		nptr++;
+	}
+	return (signe * result);
 }

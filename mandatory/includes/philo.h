@@ -6,7 +6,7 @@
 /*   By: nle-roux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 09:40:47 by nle-roux          #+#    #+#             */
-/*   Updated: 2024/01/30 10:47:23 by nle-roux         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:18:59 by nle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 # include <mini_libft.h>
 
 typedef unsigned int	t_uint;
+typedef enum e_bool
+{
+	FALSE,
+	TRUE
+}	t_bool;
 typedef struct s_data
 {
 	int	philos_num;
@@ -30,5 +35,5 @@ typedef struct s_data
 }	t_data;
 void	ft_manage_error(char *e_m, t_uint type, t_data *data);
 void	ft_destroy_data(t_data *data);
-void	ft_check_args(int argc, char **argv);
+t_bool	ft_check_args(int argc, char **argv);
 #endif

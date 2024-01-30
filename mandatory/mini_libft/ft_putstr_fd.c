@@ -6,7 +6,7 @@
 /*   By: nle-roux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:32:27 by nle-roux          #+#    #+#             */
-/*   Updated: 2024/01/30 10:32:50 by nle-roux         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:17:04 by nle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,3 @@ size_t	ft_putstr_fd(char *s, int fd)
 		len += ft_putchar_fd(*s++, fd);
 	return (len);
 }
-

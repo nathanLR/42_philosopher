@@ -6,7 +6,7 @@
 /*   By: nle-roux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 10:13:18 by nle-roux          #+#    #+#             */
-/*   Updated: 2024/01/30 10:42:09 by nle-roux         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:44:39 by nle-roux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,32 @@ void	ft_destroy_data(t_data *data)
 		free(data);
 }
 
-void	ft_check_args(int argc, char **argv)
+t_bool	ft_check_args(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
+	if (argc < 4 || argc > 5)
+	{
+		ft_manage_error("Usage: ./philo number_of_philosophers time_to_die \
+time_to_eat time_to_sleep \
+[number_of_times_each_philosopher_must_eat]", U_ERROR, NULL);
+		return (FALSE);
+	}
+	if (ft_atoi(argv[0]) < 1)
+	{
+		ft_manage_error("Error: The number of philosophers must be greater \
+than 1.", U_ERROR, NULL);
+		return (FALSE);
+	}
+	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[2]) <= 0 || ft_atoi(argv[3]) <= 0)
+	{
+		ft_manage_error("Error: The time to eat/sleep/die must be at least \
+1ms.", U_ERROR, NULL);
+		return (FALSE);
+	}
+	if (argc == 5 && ft_atoi(argv[4]) < 1)
+	{
+		ft_manage_error("Erorr: if [number_of_times_each_philosopher_must_eat] \
+is provided, then it should be at least 1.", U_ERROR, NULL);
+		return (FALSE);
+	}
+	return (TRUE);
 }
